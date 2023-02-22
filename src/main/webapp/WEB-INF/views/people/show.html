@@ -5,16 +5,32 @@
   <title>Show</title>
 </head>
 <body>
-<p th:text="${person.getName()}">VALUE</p>
-<p th:text="${person.getAge()}">VALUE</p>
-<p th:text="${person.getEmail()}">VALUE</p>
-<p th:text="${person.getAddress()}">VALUE</p>
-<p th:text="${person.getId()}">VALUE</p>
+<form th:method="GET" th:action="@{/}">
+  <input type="submit" value="На главную"/>
+</form>
+<br/>
+<hr/>
 
-<a th:href="@{/people/{id}/edit(id=${person.getId()})}">Edit</a>
+<p>
+  <a th:text="${person.getFullName() + ', ' + person.getYearOfBirth()}">user</a>
+</p>
 
+
+<hr/>
+<p th:if="${books.isEmpty()}">Человек пока не взял ни одной книги<p/>
+
+<p th:each="book : ${books}">
+  <a th:text="${book.getTitle() + ', ' + book.getAuthor() + ', ' + book.getYearBook()}">book</a>
+</p>
+<hr/>
+
+
+<form th:method="GET" th:action="@{/people/{id}/edit(id=${person.getId()})}">
+  <input type="submit" value="Редактировать"/>
+</form>
+<br/>
 <form th:method="DELETE" th:action="@{/people/{id}(id=${person.getId()})}">
-  <input type="submit" value="Delete"/>
+  <input type="submit" value="Удалить"/>
 </form>
 </body>
 </html>

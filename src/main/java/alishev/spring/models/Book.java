@@ -2,23 +2,58 @@ package alishev.spring.models;
 
 public class Book {
     private long id;
-
-    private long personId;
-
-    private String name;
-
-    private String autor;
-
-    private int year;
+    private String title;
+    private String author;
+    private int yearBook;
+    private Long personId;
 
     public Book() {
+
     }
 
-    public Book(long id, long personId, String name, String autor, int year) {
+    public Book(String title, String author, int yearBook) {
+        this.title = title;
+        this.author = author;
+        this.yearBook = yearBook;
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
         this.id = id;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public void setAuthor(String author) {
+        this.author = author;
+    }
+
+    public int getYearBook() {
+        return yearBook;
+    }
+
+    public void setYearBook(int yearBook) {
+        this.yearBook = yearBook;
+    }
+
+    public Long getPersonId() {
+        return personId;
+    }
+
+    public void setPersonId(Long personId) {
         this.personId = personId;
-        this.name = name;
-        this.autor = autor;
-        this.year = year;
     }
 }

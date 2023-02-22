@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>edit</title>
+    <title>Edit book</title>
 </head>
 <body>
 <form th:method="GET" th:action="@{/}">
@@ -12,14 +12,20 @@
 <hr/>
 
 
-<form th:method="PATCH" th:action="@{/people/{id}(id=${person.getId()})}" th:object="${person}">
-    <label for="fullName">Введите ФИО: </label>
-    <input type="text" th:field="*{fullName}" id="fullName"/>
+
+
+<form th:method="PATCH" th:action="@{/books/{id}(id=${book.getId()})}" th:object="${book}">
+    <label for="title">Enter name: </label>
+    <input type="text" th:field="*{title}" id="title"/>
 <!--    <div style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}">NameError</div>-->
     <br/>
-    <label for="yearOfBirth">Введите год рождения: </label>
-    <input type="text" th:field="*{yearOfBirth}" id="yearOfBirth"/>
+    <label for="author">Enter author: </label>
+    <input type="text" th:field="*{author}" id="author"/>
 <!--    <div style="color: red" th:if="${#fields.hasErrors('birthYear')}" th:errors="*{yearOfBirth}">AgeError</div>-->
+    <br/>
+    <label for="yearBook">Enter year book: </label>
+    <input type="text" th:field="*{yearBook}" id="yearBook"/>
+    <br/>
     <br/>
     <input type="submit" value="Редактировать!"/>
 </form>

@@ -2,27 +2,23 @@ package alishev.spring.models;
 
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
-import java.util.List;
 
 public class Person {
     private long id;
     @NotEmpty(message = "Name should not be empty")
     @Pattern(regexp = "[A-Z]\\w+ [A-Z]\\w+, [A-Z]\\w+", message = "NAME Format will be: Firstname, Secondname, Lastname")
-    private String name;
+    private String fullName;
     @NotEmpty(message = "Year should not be empty")
-    private int year;
-    private List<Book> books;
+    private int yearOfBirth;
+
 
 
     public Person() {
     }
 
-    public Person(long id, String name, int year, List<Book> books) {
-        this.id = id;
-        this.name = name;
-        this.year = year;
-        this.books = books;
+    public Person(String fullName, int yearOfBirth) {
+        this.fullName = fullName;
+        this.yearOfBirth = yearOfBirth;
     }
 
     public long getId() {
@@ -33,27 +29,20 @@ public class Person {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFullName() {
+        return fullName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFullName(String fullName) {
+        this.fullName = fullName;
     }
 
-    public int getYear() {
-        return year;
+    public int getYearOfBirth() {
+        return yearOfBirth;
     }
 
-    public void setYear(int year) {
-        this.year = year;
+    public void setYearOfBirth(int yearOfBirth) {
+        this.yearOfBirth = yearOfBirth;
     }
 
-    public List<Book> getBooks() {
-        return books;
-    }
-
-    public void setBooks(List<Book> books) {
-        this.books = books;
-    }
 }
