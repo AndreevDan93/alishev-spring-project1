@@ -29,6 +29,7 @@ public class PersonController {
         this.bookDAO = bookDAO;
     }
 
+//    Получить людей
     @GetMapping()
     public String getPeople(Model model) {
         model.addAttribute("people", personDAO.getPeople());
@@ -46,6 +47,7 @@ public class PersonController {
 
     }
 
+//    Создание пользователя
     @GetMapping("/new")
     public String newPerson(@ModelAttribute("person") Person person) {
         return "people/new";
@@ -57,6 +59,7 @@ public class PersonController {
         return "redirect:/people";
     }
 
+//    Редактирование человека
     @GetMapping("/{id}/edit")
     public String editPerson(Model model,
                              @PathVariable("id") long id) {
@@ -64,14 +67,14 @@ public class PersonController {
         return "people/edit";
     }
 
-
     @PatchMapping("/{id}")
     public String updatePerson(@ModelAttribute("person") Person person,
                                @PathVariable("id") long id) {
-        personDAO.updatePerson(id,person);
+        personDAO.updatePerson(id, person);
         return "redirect:/people";
     }
 
+//    Удаление человека
     @DeleteMapping("/{id}")
     public String deletePerson(@PathVariable("id") long id) {
         personDAO.deletePerson(id);

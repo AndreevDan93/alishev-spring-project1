@@ -12,7 +12,6 @@ public class Person {
     private int yearOfBirth;
 
 
-
     public Person() {
     }
 

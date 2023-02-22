@@ -17,7 +17,7 @@
 
 <hr/>
 
-<form th:if="${owner == null}" th:method="PATCH" th:action="@{/books/{id}/take(id=${book.getId()})}">
+<form th:if="${owner == null}" th:method="PATCH" th:action="@{/books/{id}/assign(id=${book.getId()})}">
     <label for="person">Выберете человека</label>
     <select th:object="${person}" th:field="*{id}" id="person">
         <option th:each="person : ${people}" th:value="${person.getId()}"
@@ -27,7 +27,7 @@
     <input type="submit" value="Назначить"/>
 </form>
 
-<form th:if="${owner != null}" th:method="PATCH" th:action="@{/books/{id}/free(id=${book.getId()})}">
+<form th:if="${owner != null}" th:method="PATCH" th:action="@{/books/{id}/assign(id=${book.getId()})}">
     <a th:text="${'Эта кника сейчас у: ' + owner.getFullName()}">book</a>
     <input type="submit" value="Освободить книгу">
 </form>

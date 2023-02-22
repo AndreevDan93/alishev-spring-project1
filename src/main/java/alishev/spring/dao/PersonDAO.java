@@ -14,7 +14,6 @@ public class PersonDAO {
     private final JdbcTemplate jdbcTemplate;
     private final BookDAO bookDAO;
 
-
     @Autowired
     public PersonDAO(JdbcTemplate jdbcTemplate, BookDAO bookDAO) {
         this.jdbcTemplate = jdbcTemplate;
@@ -32,13 +31,12 @@ public class PersonDAO {
                 .stream().findAny().orElse(null);
     }
 
-    public Person getOwnerByBook(long id) {
+    public Person getOwnerByBookId(long id) {
         Book book = bookDAO.getBookById(id);
         if (book.getPersonId() == null) {
             return null;
         }
         return getPersonById(book.getPersonId());
-
     }
 
     public void createPerson(Person person) {
@@ -54,8 +52,5 @@ public class PersonDAO {
     public void deletePerson(long id) {
         jdbcTemplate.update("DELETE FROM person WHERE id=?", id);
     }
-
-
-
 
 }

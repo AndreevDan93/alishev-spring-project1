@@ -43,18 +43,17 @@ public class BookDAO {
                 book.getTitle(), book.getAuthor(), book.getYearBook(), id);
     }
 
-    public void deleteBook(long id) {
-        jdbcTemplate.update("DELETE FROM book WHERE id=?", id);
-    }
-
-    public void takeBookForPerson(long id, long personId) {
+    public void updateOwnerBook(long id, long personId) {
         jdbcTemplate.update("UPDATE book SET person_id=? WHERE id=?",
                 personId, id);
     }
 
-    public void freeBook(long id) {
+    public void updateFreeOwnerBook(long id) {
         jdbcTemplate.update("UPDATE book SET person_id=null WHERE id=?", id);
     }
 
-
+    public void deleteBook(long id) {
+        jdbcTemplate.update("DELETE FROM book WHERE id=?", id);
+    }
 }
+

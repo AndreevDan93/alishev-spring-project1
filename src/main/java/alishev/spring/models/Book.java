@@ -1,9 +1,14 @@
 package alishev.spring.models;
 
+import javax.validation.constraints.NotEmpty;
+
 public class Book {
     private long id;
+    @NotEmpty
     private String title;
+    @NotEmpty
     private String author;
+    @NotEmpty
     private int yearBook;
     private Long personId;
 

@@ -29,6 +29,7 @@ public class BookController {
         this.personDAO = personDAO;
     }
 
+//    Получение книг
     @GetMapping()
     public String getBooks(Model model) {
         model.addAttribute("books", bookDAO.getBooks());
@@ -41,13 +42,14 @@ public class BookController {
                           @ModelAttribute("person") Person person) {
         Book book = bookDAO.getBookById(id);
         List<Person> people = personDAO.getPeople();
-        Person owner = personDAO.getOwnerByBook(id);
+        Person owner = personDAO.getOwnerByBookId(id);
         model.addAttribute("owner", owner);
         model.addAttribute("book", book);
         model.addAttribute("people", people);
         return "books/show";
     }
 
+//    Создать книгу
     @GetMapping("/new")
     public String newBook(@ModelAttribute("book") Book book) {
         return "books/new";
@@ -58,14 +60,13 @@ public class BookController {
         bookDAO.createBook(book);
         return "redirect:/books";
     }
-
+//      Редактировать книгу
     @GetMapping("/{id}/edit")
     public String editBook(Model model,
                            @PathVariable("id") long id) {
         model.addAttribute("book", bookDAO.getBookById(id));
         return "books/edit";
     }
-
 
     @PatchMapping("/{id}")
     public String updateBook(@ModelAttribute("book") Book book,
@@ -74,23 +75,24 @@ public class BookController {
         return "redirect:/books";
     }
 
+    @PatchMapping("/{id}/assign")
+    public String takeBook(@ModelAttribute("person") Person person,
+                           @PathVariable("id") long id) {
+        if (bookDAO.getBookById(id).getPersonId() == null) {
+            bookDAO.updateOwnerBook(id, person.getId());
+        } else {
+            bookDAO.updateFreeOwnerBook(id);
+        }
+        return "redirect:/books";
+    }
+
+//    Удалить книгу
     @DeleteMapping("/{id}")
     public String deleteBook(@PathVariable("id") long id) {
         bookDAO.deleteBook(id);
         return "redirect:/books";
     }
 
-    @PatchMapping("/{id}/take")
-    public String takeBook(@ModelAttribute("person") Person person,
-                           @PathVariable("id") long id) {
-        bookDAO.takeBookForPerson(id, person.getId());
-        return "redirect:/books";
-    }
 
-    @PatchMapping("{id}/free")
-    public String freeBook(@PathVariable("id") long id) {
-        bookDAO.freeBook(id);
-        return "redirect:/books";
-    }
 
 }
